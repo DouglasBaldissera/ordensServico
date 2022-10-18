@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relOsData" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="909481af-e61a-42a8-b01e-a7e36039bb46">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="data1" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="data2" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT os.id, os.dataemissao, os.dataentrega, os.problemarelatado, os.problemaconstatado, os.resolucao, u.nome, s.descricao FROM ordemdeservico os, usuario u, status s WHERE dataEmissao BETWEEN $P{data1} AND $P{data2} AND os.solicitante = u.id AND os.status_id = s.id]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer"/>
+	<field name="dataemissao" class="java.sql.Date"/>
+	<field name="dataentrega" class="java.sql.Date"/>
+	<field name="problemarelatado" class="java.lang.String"/>
+	<field name="problemaconstatado" class="java.lang.String"/>
+	<field name="resolucao" class="java.lang.String"/>
+	<field name="nome" class="java.lang.String"/>
+	<field name="descricao" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="62" splitType="Stretch">
+			<staticText>
+				<reportElement x="16" y="0" width="495" height="43" uuid="f9a04f49-11c2-45a8-9168-e59cbd211043"/>
+				<textElement textAlignment="Center">
+					<font size="20"/>
+				</textElement>
+				<text><![CDATA[Ordens de serviço por data]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="-16" y="17" width="16" height="20" uuid="99f407cc-69f3-467b-a91d-d838a7c4e67e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="17" width="69" height="20" uuid="51ee3fa1-bd5d-4887-b7ee-15385dfe8070"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Emissão]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="69" y="17" width="69" height="20" uuid="bd67ac09-f6d1-4b67-8cf7-e5b2aced9775"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Entrega]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="139" y="17" width="89" height="20" uuid="13a34b9d-ee53-405e-bb2e-91fe0c923d87"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Problema relatado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="228" y="17" width="139" height="20" uuid="18acae0f-15f8-45ca-94d5-1146a656e8e5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Problema constatado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="367" y="17" width="88" height="20" uuid="ff71cba3-5c04-4f6e-8dc0-a9a482ff0307"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Resolução]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="455" y="17" width="56" height="20" uuid="09159e3b-4002-4de1-a426-7c4078515195"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Solicitante]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="511" y="17" width="44" height="20" uuid="935ad57d-e913-4c55-8b50-063ef587467b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Status]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="70" splitType="Stretch">
+			<textField>
+				<reportElement x="-16" y="11" width="16" height="30" uuid="631b36fd-bec5-438d-940f-8250434d9495"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="0" y="11" width="69" height="30" uuid="da9cbb19-5819-4f21-9d4d-1e008d8f5e3c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{dataemissao}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="69" y="11" width="69" height="30" uuid="6e06d622-8b31-41ce-8d99-9c812c7b2211"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{dataentrega}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="139" y="11" width="89" height="30" uuid="2e1400aa-831b-4b97-b66a-6f93cd753127"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{problemarelatado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="228" y="11" width="139" height="30" uuid="e0001ad9-ed8f-4937-8d1e-df778edc1cf8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{problemaconstatado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="367" y="11" width="88" height="30" uuid="97f6a36d-f92c-44a7-a9cd-17d9390d09ef"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{resolucao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="455" y="11" width="56" height="30" uuid="aeaf525d-8c2e-44ed-99ee-dbb5a726de7b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="511" y="11" width="44" height="30" uuid="6924acb5-833a-4a54-b700-e63d633b674a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{descricao}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField pattern="dd/MM/yyyy HH:mm:ss">
+				<reportElement x="455" y="34" width="100" height="20" uuid="8e3e62c5-2476-4902-9624-9081f1e25803"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="327" y="34" width="40" height="20" uuid="f1b14476-0ef6-403a-93b5-eaabd50b3eef"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="110" y="34" width="217" height="20" uuid="2cd3c7e9-78e0-45fd-a51b-64a325d69118"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
